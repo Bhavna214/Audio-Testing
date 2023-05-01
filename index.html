@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start">START</button>
+    <p id="transcript"></p>
+    <script>
+        // Create a new instance of SpeechRecognition object
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.maxAlternatives = 1;
+   
+
+        // Define event listeners for recognition
+        document.getElementById('start').onclick=()=>{
+            recognition.start();
+            recognition.onresult = function(event) {
+            // Get the transcript from the first result
+            // console.log(event)
+            
+            const transcript = event.results[0][0].transcript;
+            console.log(transcript)
+            document.getElementById('transcript').innerText=transcript;
+        }
+    }
+    </script>
+</body>
+</html>
